@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Work+Sans:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>Album Odyssey</title>
+</head>
+
+<body>
+  <test-case-wrapper>
+    <test-case id="test-1" description="The carousel has a shadow DOM attached"></test-case>
+    <test-case id="test-2" description="The carousel has the albums rendered as children"></test-case>
+    <test-case id="test-3" description="The next button displays the next image on click" defer></test-case>
+  </test-case-wrapper>
+
+  <template id="album-art-template">
+    <style>
+      @import url('./reset.css');
+      @import url('./styles.css');
+    </style>
+    <div>
+      <img class="square-aspect-ratio" src="" alt="" />
+      <h3></h3>
+      <p></p>
+    </div>
+  </template>
+
+  <template id="image-carousel-template">
+    <style>
+      @import url('./reset.css');
+      @import url('./styles.css');
+
+      .wrapper {
+        max-width: 500px;
+        margin-inline: auto;
+      }
+
+      .carousel {
+        width: min(100%, 500px);
+        overflow-x: hidden;
+      }
+
+      .image-wrapper {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        pointer-events: none;
+      }
+
+      ::slotted(*) {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        width: min(100%, 500px);
+      }
+    </style>
+    <div class="wrapper">
+      <div class="carousel">
+        <slot class="flex-row image-wrapper" />
+      </div>
+      <div class="flex-row space-between">
+        <p class="position"></p>
+        <button>Next</button>
+      </div>
+    </div>
+  </template>
+
+  <header class="flex-row space-between bg-accent padding-h-4 padding-v-2">
+    <h1 class="title">Album Odyssey</h1>
+    <input class="border-radius" type="search" placeholder="e.g., nirvana nevermind" />
+  </header>
+  <nav class="bg-dark">
+    <ul class="flex-row padding-h-4 text-center">
+      <li class="bg-gray-2 padding-v-2 padding-h-4 vertical-center-align">
+        <a href="">
+          <p>Home</p>
+        </a>
+      </li>
+      <li class="bg-gray-1 padding-v-2 padding-h-4 vertical-center-align">
+        <a href="">
+          <p>Top 40</p>
+        </a>
+      </li>
+      <li class="bg-gray-1 padding-v-2 padding-h-4 vertical-center-align">
+        <a href="">
+          <p>Artists</p>
+        </a>
+      </li>
+      <li class="bg-gray-1 padding-v-2 padding-h-4 vertical-center-align">
+        <a href="">
+          <p>Songs</p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main class="padding-h-4 padding-v-2">
+    <h2 class="title">
+      Albums of 2023
+    </h2>
+    <hr />
+
+    <div class="padding-v-2 grid">
+      <image-carousel>
+        <album-art img-src="https://component-odyssey.s3.amazonaws.com/kali-uchis-new-album.webp"
+          alt="Kali Uchis album cover" artist-name="Kali Uchis" album-name="Red Moon in Venus"></album-art>
+
+        <album-art img-src="https://component-odyssey.s3.amazonaws.com/Killer-Mike-Michael.webp"
+          alt="Killer Mike album cover" artist-name="Killer Mike" album-name="Michael"></album-art>
+
+        <album-art img-src="https://component-odyssey.s3.amazonaws.com/Paramore.webp" alt="Paramore album cover"
+          artist-name="Paramore" album-name="This is Why"></album-art>
+
+        <album-art img-src="https://component-odyssey.s3.amazonaws.com/Space+Heavy-min.jpeg"
+          alt="King Krule album cover" artist-name="King Krule" album-name="Space Heavy"></album-art>
+
+        <album-art img-src="https://component-odyssey.s3.amazonaws.com/Squid-O-Monolith.webp" alt="Squid album cover"
+          artist-name="Squid" album-name="O Monolith"></album-art>
+
+        <album-art img-src="https://component-odyssey.s3.amazonaws.com/Wednesday-Rat-Saw-God.webp"
+          alt="Wednesday album cover" artist-name="Wednesday" album-name="Rat Saw God"></album-art>
+      </image-carousel>
+    </div>
+  </main>
+
+
+  <script type="module" src="./album-art.js">
+
+  </script>
+  <script>
+    class ImageCarousel extends HTMLElement {
+      /* 
+        Gets the current position of the carousel
+
+        e.g. this.#getCurrentPosition()
+      */
+      #getCurrentPosition = () => {
+        return Number(this.getAttribute('current-position'))
+      }
+
+      /* 
+        Sets the current position of the carousel
+
+        e.g. this.#setCurrentPosition(0)
+      */
+      #setCurrentPosition = (position) => {
+        this.setAttribute('current-position', `${position}`)
+      }
+
+      #handleScroll = () => {
+        const currentPosition = this.#getCurrentPosition()
+
+        if (currentPosition === 5) {
+          this.images.scrollBy({
+            left: -10000,
+            behavior: 'instant'
+          })
+          this.#setCurrentPosition(0)
+
+          return;
+        }
+
+        this.images.scrollBy({
+          left: 200,
+          behavior: 'instant'
+        })
+        this.#setCurrentPosition(currentPosition + 1)
+      }
+
+      // Task 1
+      constructor() {
+        // 1. Always call super first in!!!
+
+
+        // 2. Attach the shadowDOM
+
+
+        // 3. Append the carousel template to the shadowDOM
+      }
+
+      // Task 2
+      connectedCallback() {
+        // 1. Add an event listener to the button that fires the #handleScroll method
+
+
+        // 2. Set the initial position to 0
+      }
+
+      // Task 3a
+      static get observedAttributes() {
+        // 1. We want to observe the current-position attribute
+        return []
+      }
+
+      // Task 3b
+      attributeChangedCallback(name, oldValue, newValue) {
+        // 1. If the name is current-position, update the counter element to the new value
+      }
+
+      // Task 4
+      disconnectedCallback() {
+        // 1. Remove the event listener from the button
+      }
+    }
+
+    customElements.define('image-carousel', ImageCarousel);
+  </script>
+  <script type="module" src="./test-cases.js"></script>
+</body>
+
+</html>
