@@ -1,9 +1,24 @@
-# Exercise 1: Create a Template
+# Exercise 1: Add lifecycle methods to the carousel web component
 
-The purpose of this exercise to create the template that your web component will copy.
+The purpose of this exercise is to become more familiar with the most common web component lifecycle methods.
 
-It needs to retain the same DOM structure as each individual album cover
+You'll need to implement functionality into the following functions:
 
-The markup within the template should have no content. So you can remove the text content of the `h3` and `p` tags, as well as the values of the `src` and `alt` attributes. You can leave these as empty strings for now.
+- `contructor()`
+- `connectedCallback()`
+- `static get observedAttributes()`
+- `attributeChangedCallback()`
+- `disconnectedCallback`
 
-Once this has been completed, the tests at the top of the page will pass and you can move on to exercise two.
+The code is annotated to give some basic instructions about what you need to implement.
+
+## Note
+
+All of the behaviour outside of the lifecycle methods has already been implemented. So you don't need to worry about:
+- styling
+- DOM structure
+- wiring up the image scroll
+
+I've added a few unrealistic restrictions on the component for the sake of the exercise, so please don't use this component in your own libraries.
+
+Once you've implemented everything correctly, all the tests should pass.
