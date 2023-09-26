@@ -13,18 +13,12 @@
 </head>
 
 <body>
-  <test-case-wrapper>
-    <test-case id="test-1" description="The carousel has a shadow DOM attached"></test-case>
-    <test-case id="test-2" description="The carousel has the albums rendered as children"></test-case>
-    <test-case id="test-3" description="The next button displays the next image" defer></test-case>
-  </test-case-wrapper>
-
   <template id="album-art-template">
     <style>
       @import url('./reset.css');
       @import url('./styles.css');
     </style>
-    <div>
+    <div class="stack">
       <img class="square-aspect-ratio" src="" alt="" />
       <h3></h3>
       <p></p>
@@ -63,7 +57,7 @@
         <slot class="flex-row image-wrapper" />
       </div>
       <div class="flex-row space-between">
-        <p data-testid="counter" class="position"></p>
+        <p class="position"></p>
         <button>Next</button>
       </div>
     </div>
@@ -103,27 +97,40 @@
     </h2>
     <hr />
 
-    <div class="padding-v-2 grid">
-      <image-carousel>
-        <album-art img-src="https://component-odyssey.s3.amazonaws.com/evelyn-hunter-ophelia.jpg"
-          alt="Evelyn Hunter album cover" artist-name="Evelyn Hunter" album-name="Ophelia"></album-art>
-        <album-art img-src="https://component-odyssey.s3.amazonaws.com/fastfall-the-ebon-enigmatique.png"
-          alt="Fastfall album cover" artist-name="Fastfall" album-name="The Ebon Enigmatique"></album-art>
+    <image-carousel>
+      <album-art img-src="https://component-odyssey.s3.amazonaws.com/evelyn-hunter-ophelia.jpg"
+        alt="Evelyn Hunter album cover" artist-name="Evelyn Hunter" album-name="Ophelia"></album-art>
+      <album-art img-src="https://component-odyssey.s3.amazonaws.com/fastfall-the-ebon-enigmatique.png"
+        alt="Fastfall album cover" artist-name="Fastfall" album-name="The Ebon Enigmatique"></album-art>
+      <album-art img-src="https://component-odyssey.s3.amazonaws.com/jakayla-toney-self-titled.jpg"
+        alt="Jakalya Toney album cover" artist-name="Jakayla Toney" album-name="Self titled"></album-art>
+      <album-art img-src="https://component-odyssey.s3.amazonaws.com/romy-melny-nature.jpg" alt="Romy Melny album cover"
+        artist-name="Romy Melny" album-name="Nature"></album-art>
+      <album-art img-src="https://component-odyssey.s3.amazonaws.com/sable-dirge-craiyon.png" alt="Sable album cover"
+        artist-name="Sable" album-name="Dirge"></album-art>
+    </image-carousel>
 
-        <album-art img-src="https://component-odyssey.s3.amazonaws.com/jakayla-toney-self-titled.jpg"
-          alt="Jakalya Toney album cover" artist-name="Jakayla Toney" album-name="Self titled"></album-art>
-
-        <album-art img-src="https://component-odyssey.s3.amazonaws.com/romy-melny-nature.jpg"
-          alt="Romy Melny album cover" artist-name="Romy Melny" album-name="Nature"></album-art>
-
-        <album-art img-src="https://component-odyssey.s3.amazonaws.com/w95-959595.wav.png" alt="95 album cover"
-          artist-name="9 5" album-name="959595.wav"></album-art>
-
-        <album-art img-src="https://component-odyssey.s3.amazonaws.com/sable-dirge.png" alt="Sable album cover"
-          artist-name="Sable" album-name="Dirge"></album-art>
-      </image-carousel>
+    <div class="vertical-center-align view-all">
+      <button class="odyssey-button" data-size="large" data-color="red">View All</button>
     </div>
   </main>
+  <footer class="bg-dark padding-v-4 odyssey-stack text-center">
+    <a class="bg-dark m-auto" href="">
+      Home
+    </a>
+
+    <a class="bg-dark m-auto" href="">
+      Top 40
+    </a>
+
+    <a class="bg-dark m-auto" href="">
+      Artists
+    </a>
+
+    <a class="bg-dark m-auto" href="">
+      Songs
+    </a>
+  </footer>
 
 
   <script type="module" src="./album-art.js">
@@ -145,8 +152,9 @@
 
       #handleScroll = () => {
         const currentPosition = this.#getCurrentPosition()
+        const numberOfImages = this.children.length
 
-        if (currentPosition === 5) {
+        if (currentPosition === numberOfImages - 1) {
           this.images.scrollBy({
             left: -10000,
             behavior: 'instant'
@@ -181,7 +189,6 @@
         this.positionCounter = this.shadowRoot.querySelector('.position')
 
         this.#setCurrentPosition(0)
-
       }
 
       attributeChangedCallback(name, oldValue, newValue) {
@@ -197,8 +204,6 @@
 
     customElements.define('image-carousel', ImageCarousel);
   </script>
-
-  <script type="module" src="./test-cases.js"></script>
 </body>
 
 </html>

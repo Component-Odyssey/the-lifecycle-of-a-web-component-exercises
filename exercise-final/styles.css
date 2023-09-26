@@ -1,5 +1,9 @@
 /* BASE STYLES */
 
+html {
+  height: 100%
+}
+
 :root {
   --font-family: "Work Sans", sans-serif;
   --font-family-alt: "DM Sans", sans-serif;
@@ -14,6 +18,13 @@
 
 body {
   font-family: var(--font-family);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
 }
 
 h1 {
@@ -32,7 +43,7 @@ p {
 }
 
 img {
-  width: min(100%, 500px);
+  width: 100%;
 }
 
 ul {
@@ -53,11 +64,9 @@ a {
 }
 
 .carousel-wrapper {
-
 }
 
 .carousel-wrapper > * {
-  
 }
 
 /* LAYOUT UTILITIES */
@@ -70,6 +79,12 @@ a {
 .flex-row {
   display: flex;
   flex-direction: row;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .grid {
@@ -89,6 +104,14 @@ a {
 
 .padding-v-2 {
   padding-block: calc(var(--spacing) * 2);
+}
+.padding-v-4 {
+  padding-block: calc(var(--spacing) * 4);
+}
+
+.view-all {
+  margin-top: 64px;
+  justify-content: center;
 }
 
 .padding-h-4 {
@@ -136,4 +159,59 @@ a {
 
 .text-center {
   text-align: center;
+}
+
+.odyssey-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.odyssey-background {
+  background-image: url(./cd-background.svg);
+  background-repeat: repeat;
+}
+
+.odyssey-scrollbars::-webkit-scrollbar {
+  width: 16px;
+}
+
+.odyssey-scrollbars::-webkit-scrollbar-track {
+  background: #ffebee;
+}
+
+.odyssey-scrollbars::-webkit-scrollbar-thumb {
+  background: #e00034;
+}
+
+.odyssey-button {
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  min-height: 72px;
+  padding: 8px;
+  min-width: 256px;
+  cursor: pointer;
+  transition: background 0.05s ease-in;
+}
+.m-auto {
+  margin-inline: auto;
+}
+.odyssey-button[data-size="small"] {
+  min-width: 0;
+  padding: 12px;
+  min-height: 0;
+}
+
+.odyssey-button[data-color="red"] {
+  border: 1px solid #e50000;
+  color: #e50000;
+  background: #ffebee;
+}
+
+.odyssey-button[data-color="red"]:active {
+  background: #f7b2b2;
 }

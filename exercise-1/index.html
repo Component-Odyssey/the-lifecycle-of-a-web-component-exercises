@@ -119,7 +119,7 @@
         <album-art img-src="https://component-odyssey.s3.amazonaws.com/w95-959595.wav.png" alt="95 album cover"
           artist-name="9 5" album-name="959595.wav"></album-art>
 
-        <album-art img-src="https://component-odyssey.s3.amazonaws.com/sable-dirge.png" alt="Sable album cover"
+        <album-art img-src="https://component-odyssey.s3.amazonaws.com/sable-dirge-craiyon.png" alt="Sable album cover"
           artist-name="Sable" album-name="Dirge"></album-art>
       </image-carousel>
     </div>
@@ -151,8 +151,9 @@
 
       #handleScroll = () => {
         const currentPosition = this.#getCurrentPosition()
+        const numberOfImages = this.children.length;
 
-        if (currentPosition === 5) {
+        if (currentPosition === numberOfImages - 1) {
           this.images.scrollBy({
             left: -10000,
             behavior: 'instant'
