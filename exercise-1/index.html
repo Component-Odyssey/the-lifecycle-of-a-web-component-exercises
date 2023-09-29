@@ -151,10 +151,11 @@
 
       #handleScroll = () => {
         const currentPosition = this.#getCurrentPosition()
+        const imageWrapperEl = this.shadowRoot.querySelector('.image-wrapper')
         const numberOfImages = this.children.length;
 
         if (currentPosition === numberOfImages - 1) {
-          this.images.scrollBy({
+          imageWrapperEl.scrollBy({
             left: -10000,
             behavior: 'instant'
           })
@@ -163,7 +164,7 @@
           return;
         }
 
-        this.images.scrollBy({
+        imageWrapperEl.scrollBy({
           left: 200,
           behavior: 'instant'
         })
