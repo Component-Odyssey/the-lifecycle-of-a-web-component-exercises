@@ -172,32 +172,31 @@
 
       // Task 1
       constructor() {
-        // 1. Always call super first in!!!
+        // 1. Always call super first!!!
 
+        // 2. Access the template
 
-        // 2. Attach the shadowDOM
+        // 3. Attach the shadowDOM and append the cloned template
 
-
-        // 3. Append the carousel template to the shadowDOM
+        // 4. Store references to the counter and button
       }
 
       // Task 2
       connectedCallback() {
         // 1. Add an event listener to the button that fires the #handleScroll method
 
-
-        // 2. Set an attribute initial-position to '0'
+        // 2. Set the initial-position to '0' using this.#setCurrentPosition
       }
 
       // Task 3a
       static get observedAttributes() {
-        // 1. We want to observe the current-position attribute
+        // 1. Observe the current-position attribute
         return []
       }
 
       // Task 3b
       attributeChangedCallback(name, oldValue, newValue) {
-        // 1. If the name is current-position, update the counter element to the new value
+        // 1. When the position changes, update the counter element to the new value
       }
 
       // Task 4

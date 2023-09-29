@@ -42,10 +42,10 @@ test1El.test(() => {
 const test2El = document.getElementById('test-2');
 test2El.test(() => {
   const carouselEl = document.querySelector('image-carousel');
-  const counterEl = carouselEl.shadowRoot.querySelector('[data-testid="counter"]')
-  const counterValue = counterEl.textContent.trim()
+  const positionEl = carouselEl.shadowRoot.querySelector('.position')
+  const positionValue = positionEl.textContent.trim()
 
-  if (counterValue !== '0') return false
+  if (positionValue !== '0') return false
 
   const firstChild = carouselEl.children[0];
 
@@ -75,10 +75,10 @@ test3El.test(() => {
 
   if (!carouselEl) return false;
 
-  const counterEl = carouselEl.shadowRoot.querySelector('[data-testid="counter"]')
-  const counterValue = Number(counterEl.textContent.trim())
+  const positionEl = carouselEl.shadowRoot.querySelector('.position')
+  const positionValue = Number(positionEl.textContent.trim())
 
-  const nextPos = getNextCarouselItemPosition(counterValue, carouselEl.children.length);
+  const nextPos = getNextCarouselItemPosition(positionValue, carouselEl.children.length);
 
   const buttonEl = carouselEl.shadowRoot.querySelector('button')
   buttonEl.click()
